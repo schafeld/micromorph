@@ -10,7 +10,10 @@ export default defineConfig({
                a: fileURLToPath(new URL("./a.html", import.meta.url)),
                b: fileURLToPath(new URL("./b.html", import.meta.url)),
                c: fileURLToPath(new URL("./c.html", import.meta.url)),
-            }
+            },
+            external: [             
+                "micromorph/spa"
+              ],
         }
     }
 })
