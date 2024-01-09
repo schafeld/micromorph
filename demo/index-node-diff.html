@@ -1,0 +1,88 @@
+<head>
+  <title>Micromorph Node Diff</title>
+  <link href="/main.css" rel="stylesheet" />
+  <script type="module">
+    console.log('home');
+
+    // Prerequisite:
+    // npm run build:index
+    import diff from '../dist/index.js';
+    window.diff = diff;
+
+    // Create a new slot element, without appending it to the DOM
+    window.slot3 = document.createElement('div');
+    slot3.innerHTML = '<p>Slot 3, containing some HTML content to be transposed/"diffed" into target area.</p>';
+    slot3.classList.add('slot3');
+  </script>
+
+  <style>
+    #targetSlot {
+      border: 1px solid black;
+      padding: 10px;
+    }
+    ul#nav li {
+      display: inline-block;
+      margin-right: 10px;
+      padding: 10px;
+      border: 1px solid black;
+      cursor: pointer;
+    }
+    ul#nav li:hover {
+      background-color: #eee;
+    }
+
+    .slot1, .slot2 {
+      opacity: 0.5;
+    }
+    #targetSlot .slot1, #targetSlot .slot2 {
+      opacity: 1;
+    }
+    
+    </style>
+</head>
+
+<body>
+  <div id="app">
+    <p style="color: red;">Micromorph Node Diff</p>
+
+    <ul id="nav">
+      <li>
+        <a onclick="window.diff(document.querySelector('#targetSlot div'),document.querySelector('.slot1'));">
+          Diff/Transpose Slot 1
+        </a>
+      </li>
+      <li>
+        <a onclick="window.diff(document.querySelector('#targetSlot div'),document.querySelector('.slot2'));">
+          Diff/Transpose Slot 2
+        </a>
+      </li>
+      <li>
+        <a onclick="window.diff(document.querySelector('#targetSlot div'),window.slot3);">
+          Diff/Transpose Slot 3
+        </a>
+      </li>
+    </ul>
+
+    <p>Click on one of the "buttons" above to diff/transpose the content of the corresponding slot into the target area. The original slots would be hidden instead of merely grayed out in a production app... or use unrendered node elements (see slot3).</p>
+
+    <div class="slot1">
+      <p>Slot 1, containing some HTML</p>
+    </div>
+
+    <div class="slot2">
+      <p>Slot 2, also containing some random text</p>
+    </div>
+
+    <!-- div class="slot3">
+      <p>Slot 3, containing some HTML content to be transposed/"diffed" into target area.</p>
+    </div -->
+
+    <div id="targetSlot">
+      <div>
+        <p>Here the diffed/transposed content should appear.</p>
+      </div>
+    </div>
+
+  </div>
+  <!-- script type="module" src="/index.js"></script -->
+</body>
