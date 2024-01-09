@@ -13,7 +13,7 @@ export default defineConfig({
             },
             external: [             
                 "micromorph/spa"
-              ],
+            ],
         }
     }
 })
